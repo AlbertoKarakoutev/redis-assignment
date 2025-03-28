@@ -1,0 +1,16 @@
+services:
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+  redis-producer:
+    image: redis-producer
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - PRODUCER_DURATION=1
+      - PRODUCER_BATCH_SIZE=1000
+      - PRODUCER_PRODUCE_INDEFINITELY=True
+    depends_on:
+      - redis
+
