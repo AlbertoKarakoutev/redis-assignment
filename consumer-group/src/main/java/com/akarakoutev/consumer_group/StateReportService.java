@@ -22,6 +22,9 @@ public class StateReportService {
         this.redisConnectionService = redisConnectionService;
     }
 
+    /**
+     * Report the processing speed at a constant rate.
+     */
     @Scheduled(fixedRate = REPORT_SECONDS * 1000)
     private void reportProcessedMessages() {
         redisConnectionService.executeReactive(reactiveCommands ->

@@ -24,6 +24,12 @@ public abstract class JsonConsumer extends AbstractConsumer<JsonNode> {
         this.objectMapper = objectMapper;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param rawMessage The incoming raw message
+     * @return The parsed JsonNode object
+     * @see ChannelMessage
+     */
     @Override
     public JsonNode parse(ChannelMessage<String, String> rawMessage) {
         try {

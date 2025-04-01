@@ -25,6 +25,13 @@ public class RedisLockService implements LockService {
         this.redisLockDurationSeconds = redisLockDurationSeconds;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * If not manually released, this lock will expire in a reasonable amount of time, defined as {@code redis.lock.duration-millis} to prevent memory leaks.
+     * @param key The key, for which to acquire the lock
+     * @return A {@code Mono<Boolean>} containing the result of the lock creation and expiration setting
+     */
     @Override
     public synchronized Mono<Boolean> acquireLock(String key) {
         return redisConnectionService.executeReactive(reactiveCommands ->
@@ -42,6 +49,11 @@ public class RedisLockService implements LockService {
         );
     }
 
+    /**
+     * {@inheritDoc}
+     * @param key The key, for which to release the lock
+     * @return A {@code Mono<Boolean>} containing the result of the lock releasing
+     */
     @Override
     public synchronized Mono<Boolean> releaseLock(String key) {
         return redisConnectionService.executeReactive(reactiveCommands ->
