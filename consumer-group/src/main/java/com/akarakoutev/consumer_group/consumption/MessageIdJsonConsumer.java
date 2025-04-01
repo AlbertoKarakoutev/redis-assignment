@@ -82,4 +82,8 @@ public class MessageIdJsonConsumer extends JsonConsumer {
     public String identify(JsonNode message) {
         return message.get(Message.MESSAGE_ID_KEY).textValue();
     }
+
+    UUID getConsumerId() {
+        return consumerId;
+    }
 }

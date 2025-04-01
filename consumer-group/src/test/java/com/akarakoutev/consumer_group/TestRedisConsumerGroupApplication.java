@@ -1,4 +1,4 @@
-package com.akarakoutev.redis_consumer_group;
+package com.akarakoutev.consumer_group;
 
 import org.springframework.boot.SpringApplication;
 
